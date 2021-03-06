@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -13,6 +13,10 @@
 		AFE2D7C025F3A42D0026A842 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AFE2D7BF25F3A42D0026A842 /* Preview Assets.xcassets */; };
 		AFE2D7CB25F3A42D0026A842 /* TrialExercisesAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE2D7CA25F3A42D0026A842 /* TrialExercisesAppTests.swift */; };
 		AFE2D7D625F3A42D0026A842 /* TrialExercisesAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE2D7D525F3A42D0026A842 /* TrialExercisesAppUITests.swift */; };
+		AFE2D7EB25F3A60A0026A842 /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = AFE2D7EA25F3A60A0026A842 /* Moya */; };
+		AFE2D7F125F3A6D70026A842 /* MTCMobileTrialsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE2D7F025F3A6D70026A842 /* MTCMobileTrialsAPI.swift */; };
+		AFE2D7FA25F3A91E0026A842 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE2D7F925F3A91E0026A842 /* Player.swift */; };
+		AFE2D80225F3AA180026A842 /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE2D80125F3AA180026A842 /* Team.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +49,9 @@
 		AFE2D7D125F3A42D0026A842 /* TrialExercisesAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TrialExercisesAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AFE2D7D525F3A42D0026A842 /* TrialExercisesAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrialExercisesAppUITests.swift; sourceTree = "<group>"; };
 		AFE2D7D725F3A42D0026A842 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AFE2D7F025F3A6D70026A842 /* MTCMobileTrialsAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTCMobileTrialsAPI.swift; sourceTree = "<group>"; };
+		AFE2D7F925F3A91E0026A842 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		AFE2D80125F3AA180026A842 /* Team.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,6 +59,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AFE2D7EB25F3A60A0026A842 /* Moya in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -95,6 +103,8 @@
 		AFE2D7B725F3A42B0026A842 /* TrialExercisesApp */ = {
 			isa = PBXGroup;
 			children = (
+				AFE2D7F825F3A90B0026A842 /* Models */,
+				AFE2D7EF25F3A67E0026A842 /* API */,
 				AFE2D7B825F3A42B0026A842 /* TrialExercisesAppApp.swift */,
 				AFE2D7BA25F3A42B0026A842 /* ContentView.swift */,
 				AFE2D7BC25F3A42D0026A842 /* Assets.xcassets */,
@@ -130,6 +140,23 @@
 			path = TrialExercisesAppUITests;
 			sourceTree = "<group>";
 		};
+		AFE2D7EF25F3A67E0026A842 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				AFE2D7F025F3A6D70026A842 /* MTCMobileTrialsAPI.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		AFE2D7F825F3A90B0026A842 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				AFE2D7F925F3A91E0026A842 /* Player.swift */,
+				AFE2D80125F3AA180026A842 /* Team.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -146,6 +173,9 @@
 			dependencies = (
 			);
 			name = TrialExercisesApp;
+			packageProductDependencies = (
+				AFE2D7EA25F3A60A0026A842 /* Moya */,
+			);
 			productName = TrialExercisesApp;
 			productReference = AFE2D7B525F3A42B0026A842 /* TrialExercisesApp.app */;
 			productType = "com.apple.product-type.application";
@@ -217,6 +247,9 @@
 				Base,
 			);
 			mainGroup = AFE2D7AC25F3A42B0026A842;
+			packageReferences = (
+				AFE2D7E925F3A60A0026A842 /* XCRemoteSwiftPackageReference "Moya" */,
+			);
 			productRefGroup = AFE2D7B625F3A42B0026A842 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -259,7 +292,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AFE2D7FA25F3A91E0026A842 /* Player.swift in Sources */,
+				AFE2D7F125F3A6D70026A842 /* MTCMobileTrialsAPI.swift in Sources */,
 				AFE2D7BB25F3A42B0026A842 /* ContentView.swift in Sources */,
+				AFE2D80225F3AA180026A842 /* Team.swift in Sources */,
 				AFE2D7B925F3A42B0026A842 /* TrialExercisesAppApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -580,6 +616,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		AFE2D7E925F3A60A0026A842 /* XCRemoteSwiftPackageReference "Moya" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Moya/Moya.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 14.0.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		AFE2D7EA25F3A60A0026A842 /* Moya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AFE2D7E925F3A60A0026A842 /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = Moya;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = AFE2D7AD25F3A42B0026A842 /* Project object */;
 }
