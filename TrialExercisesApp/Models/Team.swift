@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Team {
+struct Team: Codable {
     enum CodingKeys: String, CodingKey {
         case name = "teamName"
         case city = "teamCity"

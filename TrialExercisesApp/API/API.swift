@@ -1,5 +1,5 @@
 //
-//  MTCMobileTrialsAPI.swift
+//  API.swift
 //  TrialExercisesApp
 //
 //  Created by Henrik Gustavii on 06/03/2021.
@@ -8,13 +8,13 @@
 import Foundation
 import Moya
 
-enum MTCMobileTrialsAPIService {
+enum APIService {
     case search(searchString: String)
     
-    static let provider = MoyaProvider<MTCMobileTrialsAPIService>()
+    static let provider = MoyaProvider<APIService>()
 }
 
-extension MTCMobileTrialsAPIService: TargetType {
+extension APIService: TargetType {
     var baseURL: URL {
         return URL(string: "https://trials.mtcmobile.co.uk")!
     }

@@ -8,14 +8,19 @@
 import SwiftUI
 import Moya
 
-class ContentViewModel {
-    let provider = MoyaProvider<MTCMobileTrialsAPIService>()
+class ContentViewModel: ObservableObject {
+    let provider = MoyaProvider<APIService>()
+    @Published var searchResult: SearchResponse.Result? = nil
     
     func search(searchString: String) {
         provider.request(.search(searchString: searchString)) { result in
             switch result {
             case let .success(response):
-                print(response.data)
+                do {
+                    self.searchResult = try JSONDecoder().decode(SearchResponse.self, from: response.data).result
+                } catch {
+                    fatalError("Error decoding result")
+                }
             case let .failure(error):
                 print(error)
             }

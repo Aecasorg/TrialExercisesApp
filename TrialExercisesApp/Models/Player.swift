@@ -17,7 +17,7 @@ struct Player: Codable {
     
     let firstName: String
     let surname: String
-    let age: Int
+    let age: String
     let club: String
     
 }
