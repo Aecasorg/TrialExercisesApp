@@ -20,6 +20,7 @@
 		AFE2D80F25F3EAD20026A842 /* SearchResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE2D80E25F3EAD20026A842 /* SearchResponse.swift */; };
 		AFE2D81D25F4CCA80026A842 /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE2D81C25F4CCA80026A842 /* PlayerView.swift */; };
 		AFE2D82525F4D0FB0026A842 /* TeamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE2D82425F4D0FB0026A842 /* TeamView.swift */; };
+		AFE2D82D25F51A3B0026A842 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE2D82C25F51A3B0026A842 /* MainViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +59,7 @@
 		AFE2D80E25F3EAD20026A842 /* SearchResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResponse.swift; sourceTree = "<group>"; };
 		AFE2D81C25F4CCA80026A842 /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
 		AFE2D82425F4D0FB0026A842 /* TeamView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamView.swift; sourceTree = "<group>"; };
+		AFE2D82C25F51A3B0026A842 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,12 +111,11 @@
 		AFE2D7B725F3A42B0026A842 /* TrialExercisesApp */ = {
 			isa = PBXGroup;
 			children = (
-				AFE2D7F825F3A90B0026A842 /* Models */,
-				AFE2D7EF25F3A67E0026A842 /* API */,
 				AFE2D7B825F3A42B0026A842 /* TrialExercisesApp.swift */,
-				AFE2D7BA25F3A42B0026A842 /* MainView.swift */,
-				AFE2D81C25F4CCA80026A842 /* PlayerView.swift */,
-				AFE2D82425F4D0FB0026A842 /* TeamView.swift */,
+				AFE2D7EF25F3A67E0026A842 /* API */,
+				AFE2D7F825F3A90B0026A842 /* Models */,
+				AFE2D83225F51A770026A842 /* ViewModels */,
+				AFE2D83125F51A490026A842 /* Views */,
 				AFE2D7BC25F3A42D0026A842 /* Assets.xcassets */,
 				AFE2D7C125F3A42D0026A842 /* Info.plist */,
 				AFE2D7BE25F3A42D0026A842 /* Preview Content */,
@@ -164,6 +165,24 @@
 				AFE2D80E25F3EAD20026A842 /* SearchResponse.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		AFE2D83125F51A490026A842 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				AFE2D7BA25F3A42B0026A842 /* MainView.swift */,
+				AFE2D81C25F4CCA80026A842 /* PlayerView.swift */,
+				AFE2D82425F4D0FB0026A842 /* TeamView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		AFE2D83225F51A770026A842 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				AFE2D82C25F51A3B0026A842 /* MainViewModel.swift */,
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -309,6 +328,7 @@
 				AFE2D7BB25F3A42B0026A842 /* MainView.swift in Sources */,
 				AFE2D80225F3AA180026A842 /* Team.swift in Sources */,
 				AFE2D7B925F3A42B0026A842 /* TrialExercisesApp.swift in Sources */,
+				AFE2D82D25F51A3B0026A842 /* MainViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

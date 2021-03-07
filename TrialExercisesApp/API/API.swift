@@ -10,8 +10,13 @@ import Moya
 
 enum APIService {
     case search(searchString: String)
-    
+    case searchType(searchString: String, searchType: searchType, offset: Int)
     static let provider = MoyaProvider<APIService>()
+}
+
+enum searchType: String {
+    case players
+    case teams
 }
 
 extension APIService: TargetType {
@@ -20,17 +25,11 @@ extension APIService: TargetType {
     }
     
     var path: String {
-        switch self {
-        case .search:
             return "/api/football/1.0/search"
-        }
     }
     
     var method: Moya.Method {
-        switch self {
-        case .search:
             return .get
-        }
     }
     
     var sampleData: Data {
@@ -41,6 +40,8 @@ extension APIService: TargetType {
         switch self {
         case .search(let searchString):
             return .requestParameters(parameters: ["searchString": searchString], encoding: URLEncoding.default)
+        case .searchType(let searchString, let searchType, let offset):
+            return .requestParameters(parameters: ["searchString": searchString, "searchType": searchType.rawValue, "offset": offset], encoding: URLEncoding.default)
         }
     }
     

@@ -6,37 +6,6 @@
 //
 
 import SwiftUI
-import Moya
-
-class MainViewModel: ObservableObject {
-    let provider = MoyaProvider<APIService>()
-    @Published var searchResult: SearchResponse.Result? = nil
-    var searchString: String = ""
-    var showNoResult: Bool = false
-    
-    var players: [Player] { searchResult?.players ?? [] }
-    var teams: [Team] { searchResult?.teams ?? [] }
-    
-    func search() {
-        provider.request(.search(searchString: self.searchString)) { result in
-            switch result {
-            case let .success(response):
-                do {
-                    self.searchResult = try JSONDecoder().decode(SearchResponse.self, from: response.data).result
-                    self.updateShowNoResult()
-                } catch {
-                    fatalError("Error decoding result")
-                }
-            case let .failure(error):
-                print(error)
-            }
-        }
-    }
-    
-    func updateShowNoResult() {
-        showNoResult = players.isEmpty && teams.isEmpty
-    }
-}
 
 struct MainView: View {
     @StateObject var viewModel = MainViewModel()
@@ -73,12 +42,44 @@ struct MainView: View {
                             ForEach(viewModel.players) { player in
                                 PlayerView(player: player)
                             }
+                            
+                            if viewModel.showMorePlayersButton {
+                                HStack {
+                                    Spacer()
+                                    
+                                    Button("More players...") {
+                                        viewModel.searchMorePlayers()
+                                    }
+                                    .foregroundColor(.white)
+                                    .padding(8)
+                                    .background(Color.gray)
+                                    .cornerRadius(8)
+                                    
+                                    Spacer()
+                                }
+                            }
                         }
                     }
                     if viewModel.teams.isEmpty == false {
                         Section(header: Text("Teams")) {
                             ForEach(viewModel.teams) { team in
                                 TeamView(team: team)
+                            }
+                            
+                            if viewModel.showMoreTeamsButton {
+                                HStack {
+                                    Spacer()
+                                    
+                                    Button("More teams...") {
+                                        viewModel.searchMoreTeams()
+                                    }
+                                    .foregroundColor(.white)
+                                    .padding(8)
+                                    .background(Color.gray)
+                                    .cornerRadius(8)
+                                    
+                                    Spacer()
+                                }
                             }
                         }
                     }
