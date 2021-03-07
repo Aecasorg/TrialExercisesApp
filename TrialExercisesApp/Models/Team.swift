@@ -9,12 +9,11 @@ import Foundation
 
 struct Team: Codable, Identifiable {
     enum CodingKeys: String, CodingKey {
-        case id = "teamID"
         case name = "teamName"
         case city = "teamCity"
         case stadium = "teamStadium"
     }
-    let id: String
+    let id = UUID()
     let name: String
     let city: String
     let stadium: String
@@ -23,9 +22,9 @@ struct Team: Codable, Identifiable {
 extension Team {
     static var data: [Team] {
         [
-            Team(id: "4", name: "Bayern Munich", city: "Munich", stadium: "Allianz Arena"),
-            Team(id: "5", name: "Manchester City", city: "Manchester", stadium: "Etihad Stadium"),
-            Team(id: "6", name: "Inter Milan", city: "Milan", stadium: "San Siro Stadium")
+            Team(name: "Bayern Munich", city: "Munich", stadium: "Allianz Arena"),
+            Team(name: "Manchester City", city: "Manchester", stadium: "Etihad Stadium"),
+            Team(name: "Inter Milan", city: "Milan", stadium: "San Siro Stadium")
         ]
     }
 }
