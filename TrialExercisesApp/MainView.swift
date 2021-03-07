@@ -12,10 +12,16 @@ class MainViewModel: ObservableObject {
     let provider = MoyaProvider<APIService>()
     @Published var searchResult: SearchResponse.Result? = nil
     var searchString: String = ""
-    var showNoResult: Bool = false
+    var showNoResult = false
     
     var players: [Player] { searchResult?.players ?? [] }
     var teams: [Team] { searchResult?.teams ?? [] }
+    
+    var playerOffset: Int = 10
+    var teamsOffset: Int = 10
+    
+    var showMorePlayersButton: Bool { players.count == playerOffset }
+    var showMoreTeamsButton: Bool { teams.count == teamsOffset }
     
     func search() {
         provider.request(.search(searchString: self.searchString)) { result in
@@ -31,6 +37,53 @@ class MainViewModel: ObservableObject {
                 print(error)
             }
         }
+        
+        resetOffsets()
+    }
+    
+    func searchMorePlayers() {
+        provider.request(.searchType(searchString: self.searchString, searchType: .players, offset: playerOffset + 10)) { result in
+            switch result {
+            case let .success(response):
+                do {
+                    if let playerArray = try JSONDecoder().decode(SearchResponse.self, from: response.data).result.players {
+                        self.searchResult?.players?.append(contentsOf: playerArray)
+                    }
+                    self.updateShowNoResult()
+                } catch {
+                    fatalError("Error decoding player result")
+                }
+            case let .failure(error):
+                print(error)
+            }
+        }
+        
+        playerOffset += 10
+    }
+    
+    func searchMoreTeams() {
+        provider.request(.searchType(searchString: self.searchString, searchType: .teams, offset: teamsOffset + 10)) { result in
+            switch result {
+            case let .success(response):
+                do {
+                    if let teamsArray = try JSONDecoder().decode(SearchResponse.self, from: response.data).result.teams {
+                        self.searchResult?.teams?.append(contentsOf: teamsArray)
+                    }
+                    self.updateShowNoResult()
+                } catch {
+                    fatalError("Error decoding teams result")
+                }
+            case let .failure(error):
+                print(error)
+            }
+        }
+        
+        teamsOffset += 10
+    }
+    
+    func resetOffsets() {
+        playerOffset = 10
+        teamsOffset = 10
     }
     
     func updateShowNoResult() {
@@ -73,12 +126,44 @@ struct MainView: View {
                             ForEach(viewModel.players) { player in
                                 PlayerView(player: player)
                             }
+                            
+                            if viewModel.showMorePlayersButton {
+                                HStack {
+                                    Spacer()
+                                    
+                                    Button("More players...") {
+                                        viewModel.searchMorePlayers()
+                                    }
+                                    .foregroundColor(.white)
+                                    .padding(8)
+                                    .background(Color.gray)
+                                    .cornerRadius(8)
+                                    
+                                    Spacer()
+                                }
+                            }
                         }
                     }
                     if viewModel.teams.isEmpty == false {
                         Section(header: Text("Teams")) {
                             ForEach(viewModel.teams) { team in
                                 TeamView(team: team)
+                            }
+                            
+                            if viewModel.showMoreTeamsButton {
+                                HStack {
+                                    Spacer()
+                                    
+                                    Button("More teams...") {
+                                        viewModel.searchMoreTeams()
+                                    }
+                                    .foregroundColor(.white)
+                                    .padding(8)
+                                    .background(Color.gray)
+                                    .cornerRadius(8)
+                                    
+                                    Spacer()
+                                }
                             }
                         }
                     }

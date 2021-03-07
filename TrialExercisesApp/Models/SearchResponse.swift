@@ -12,7 +12,7 @@ struct SearchResponse: Codable {
     let result: Result
     
     struct Result: Codable {
-        let players: [Player]?
-        let teams: [Team]?
+        var players: [Player]?
+        var teams: [Team]?
     }
 }
