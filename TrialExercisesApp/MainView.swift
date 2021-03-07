@@ -11,7 +11,8 @@ import Moya
 class MainViewModel: ObservableObject {
     let provider = MoyaProvider<APIService>()
     @Published var searchResult: SearchResponse.Result? = nil
-    @Published var searchString: String = ""
+    var searchString: String = ""
+    var showNoResult: Bool = false
     
     var players: [Player] { searchResult?.players ?? [] }
     var teams: [Team] { searchResult?.teams ?? [] }
@@ -22,6 +23,7 @@ class MainViewModel: ObservableObject {
             case let .success(response):
                 do {
                     self.searchResult = try JSONDecoder().decode(SearchResponse.self, from: response.data).result
+                    self.updateShowNoResult()
                 } catch {
                     fatalError("Error decoding result")
                 }
@@ -29,6 +31,10 @@ class MainViewModel: ObservableObject {
                 print(error)
             }
         }
+    }
+    
+    func updateShowNoResult() {
+        showNoResult = players.isEmpty && teams.isEmpty
     }
 }
 
@@ -41,6 +47,12 @@ struct MainView: View {
                 HStack {
                     Image(systemName: "magnifyingglass")
                     TextField("Search", text: $viewModel.searchString)
+                        .padding(8)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 8)
+                                .stroke(Color.gray, lineWidth: 1)
+                        )
+                    
                     Button("Search") {
                         viewModel.search()
                     }
@@ -51,16 +63,23 @@ struct MainView: View {
                 }
                 .padding()
                 
+                if viewModel.showNoResult {
+                    Text("No results found")
+                }
+                
                 List {
-                    Section(header: Text("Players")) {
-                        ForEach(viewModel.players) { player in
-                            PlayerView(player: player)
+                    if viewModel.players.isEmpty == false {
+                        Section(header: Text("Players")) {
+                            ForEach(viewModel.players) { player in
+                                PlayerView(player: player)
+                            }
                         }
                     }
-                    
-                    Section(header: Text("Teams")) {
-                        ForEach(viewModel.teams) { team in
-                            TeamView(team: team)
+                    if viewModel.teams.isEmpty == false {
+                        Section(header: Text("Teams")) {
+                            ForEach(viewModel.teams) { team in
+                                TeamView(team: team)
+                            }
                         }
                     }
                 }
