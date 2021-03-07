@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  MainView.swift
 //  TrialExercisesApp
 //
 //  Created by Henrik Gustavii on 06/03/2021.
@@ -8,9 +8,12 @@
 import SwiftUI
 import Moya
 
-class ContentViewModel: ObservableObject {
+class MainViewModel: ObservableObject {
     let provider = MoyaProvider<APIService>()
     @Published var searchResult: SearchResponse.Result? = nil
+    var searchString: String = "barc"
+    
+    var players: [Player] { searchResult?.players ?? [] }
     
     func search(searchString: String) {
         provider.request(.search(searchString: searchString)) { result in
@@ -28,13 +31,15 @@ class ContentViewModel: ObservableObject {
     }
 }
 
-struct ContentView: View {
-    let viewModel = ContentViewModel()
+struct MainView: View {
+    let viewModel = MainViewModel()
     
     var body: some View {
-        VStack {
-            Text("Hello, world!")
-                .padding()
+        ScrollView {
+            ForEach(viewModel.players) { player in
+                PlayerView(player: player)
+            }
+            Spacer()
             Button("Search") {
                 viewModel.search(searchString: "barc")
             }
@@ -44,6 +49,6 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        MainView()
     }
 }
