@@ -9,3 +9,5 @@ If I had more time:
 - Make only the star button in the MainView tappable and not the whole cell as it is currently.
 - Make sure you can only have one unique favourite player in the db. Currently you can add multiple entries of the same player.
 - I would clean up the UI.
+
+The choice of using Core Data was for speed and simplicity, and how well it works with SwiftUI. I also looked at Realm and even GRDB. They would probably have worked better with a MVVM pattern and testability in mind.
