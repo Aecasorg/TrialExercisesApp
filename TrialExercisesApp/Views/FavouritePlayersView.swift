@@ -8,13 +8,13 @@
 import SwiftUI
 
 class FavouritesViewModel: ObservableObject {
-    // TODO: Move data handling from view into here
+    // TODO: Move data handling from view into here (if possible)
 }
 
 struct FavouritePlayersView: View {
     @StateObject var viewModel = FavouritesViewModel()
     @Environment(\.managedObjectContext) var managedObjectContext
-    
+
     @FetchRequest(entity: FavouritePlayer.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \FavouritePlayer.firstName, ascending: true)]) var players: FetchedResults<FavouritePlayer>
     
     func removePlayer(at offsets: IndexSet) {
@@ -27,6 +27,14 @@ struct FavouritePlayersView: View {
     
     var body: some View {
         List {
+            if players.isEmpty {
+                HStack {
+                    Spacer()
+                    Text("No favourite players saved")
+                    Spacer()
+                }
+            }
+            
             ForEach(players, id: \.self) { player in
                 VStack(alignment: .leading) {
                     Text("\(player.firstName ?? "Unknown") \(player.surname ?? "Unknown")")
