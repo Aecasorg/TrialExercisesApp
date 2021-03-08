@@ -9,6 +9,9 @@ import SwiftUI
 
 struct MainView: View {
     @StateObject var viewModel = MainViewModel()
+    @Environment(\.managedObjectContext) var managedObjectContext
+    
+    @State private var isPresented = false
     
     var body: some View {
         NavigationView {
@@ -40,7 +43,18 @@ struct MainView: View {
                     if viewModel.players.isEmpty == false {
                         Section(header: Text("Players")) {
                             ForEach(viewModel.players) { player in
-                                PlayerView(player: player)
+                                HStack {
+                                    PlayerView(player: player)
+                                    
+                                    Button("Favouritise player") {
+                                        let savedPlayer = FavouritePlayer(context: managedObjectContext)
+                                        savedPlayer.firstName = player.firstName
+                                        savedPlayer.surname = player.surname
+                                        savedPlayer.age = player.age
+                                        savedPlayer.club = player.club
+                                        PersistenceController.shared.save()
+                                    }
+                                }
                             }
                             
                             if viewModel.showMorePlayersButton {
@@ -86,6 +100,19 @@ struct MainView: View {
                 }
                 .listStyle(InsetGroupedListStyle())
                 .navigationTitle("Football Search")
+                .navigationBarItems(trailing: Button(action: {
+                    isPresented = true
+                }) {
+                    Image(systemName: "star")
+                })
+                .sheet(isPresented: $isPresented) {
+                    NavigationView {
+                        FavouritePlayersView()
+                            .navigationBarItems(leading: Button("Dismiss") {
+                                isPresented = false
+                            })
+                    }
+                }
             }
         }
         
