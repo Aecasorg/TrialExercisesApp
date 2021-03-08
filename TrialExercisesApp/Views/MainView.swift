@@ -46,13 +46,15 @@ struct MainView: View {
                                 HStack {
                                     PlayerView(player: player)
                                     
-                                    Button("Favouritise player") {
+                                    Button(action: {
                                         let savedPlayer = FavouritePlayer(context: managedObjectContext)
                                         savedPlayer.firstName = player.firstName
                                         savedPlayer.surname = player.surname
                                         savedPlayer.age = player.age
                                         savedPlayer.club = player.club
                                         PersistenceController.shared.save()
+                                    }) {
+                                        Image(systemName: "star.fill")
                                     }
                                 }
                             }
