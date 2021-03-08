@@ -21,6 +21,9 @@
 		AFE2D81D25F4CCA80026A842 /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE2D81C25F4CCA80026A842 /* PlayerView.swift */; };
 		AFE2D82525F4D0FB0026A842 /* TeamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE2D82425F4D0FB0026A842 /* TeamView.swift */; };
 		AFE2D82D25F51A3B0026A842 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE2D82C25F51A3B0026A842 /* MainViewModel.swift */; };
+		AFE2D86525F53D8C0026A842 /* FavouritePlayersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE2D86425F53D8C0026A842 /* FavouritePlayersView.swift */; };
+		AFE2D86B25F53DBA0026A842 /* FavouritePlayers.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AFE2D86925F53DBA0026A842 /* FavouritePlayers.xcdatamodeld */; };
+		AFE2D87025F53E270026A842 /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE2D86F25F53E270026A842 /* PersistenceController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +63,9 @@
 		AFE2D81C25F4CCA80026A842 /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
 		AFE2D82425F4D0FB0026A842 /* TeamView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamView.swift; sourceTree = "<group>"; };
 		AFE2D82C25F51A3B0026A842 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
+		AFE2D86425F53D8C0026A842 /* FavouritePlayersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritePlayersView.swift; sourceTree = "<group>"; };
+		AFE2D86A25F53DBA0026A842 /* FavouritePlayers.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FavouritePlayers.xcdatamodel; sourceTree = "<group>"; };
+		AFE2D86F25F53E270026A842 /* PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +125,7 @@
 				AFE2D7BC25F3A42D0026A842 /* Assets.xcassets */,
 				AFE2D7C125F3A42D0026A842 /* Info.plist */,
 				AFE2D7BE25F3A42D0026A842 /* Preview Content */,
+				AFE2D86F25F53E270026A842 /* PersistenceController.swift */,
 			);
 			path = TrialExercisesApp;
 			sourceTree = "<group>";
@@ -163,6 +170,7 @@
 				AFE2D7F925F3A91E0026A842 /* Player.swift */,
 				AFE2D80125F3AA180026A842 /* Team.swift */,
 				AFE2D80E25F3EAD20026A842 /* SearchResponse.swift */,
+				AFE2D86925F53DBA0026A842 /* FavouritePlayers.xcdatamodeld */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -173,6 +181,7 @@
 				AFE2D7BA25F3A42B0026A842 /* MainView.swift */,
 				AFE2D81C25F4CCA80026A842 /* PlayerView.swift */,
 				AFE2D82425F4D0FB0026A842 /* TeamView.swift */,
+				AFE2D86425F53D8C0026A842 /* FavouritePlayersView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -323,12 +332,15 @@
 				AFE2D7FA25F3A91E0026A842 /* Player.swift in Sources */,
 				AFE2D7F125F3A6D70026A842 /* API.swift in Sources */,
 				AFE2D81D25F4CCA80026A842 /* PlayerView.swift in Sources */,
+				AFE2D87025F53E270026A842 /* PersistenceController.swift in Sources */,
 				AFE2D82525F4D0FB0026A842 /* TeamView.swift in Sources */,
 				AFE2D80F25F3EAD20026A842 /* SearchResponse.swift in Sources */,
 				AFE2D7BB25F3A42B0026A842 /* MainView.swift in Sources */,
 				AFE2D80225F3AA180026A842 /* Team.swift in Sources */,
+				AFE2D86B25F53DBA0026A842 /* FavouritePlayers.xcdatamodeld in Sources */,
 				AFE2D7B925F3A42B0026A842 /* TrialExercisesApp.swift in Sources */,
 				AFE2D82D25F51A3B0026A842 /* MainViewModel.swift in Sources */,
+				AFE2D86525F53D8C0026A842 /* FavouritePlayersView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -667,6 +679,19 @@
 			productName = Moya;
 		};
 /* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		AFE2D86925F53DBA0026A842 /* FavouritePlayers.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				AFE2D86A25F53DBA0026A842 /* FavouritePlayers.xcdatamodel */,
+			);
+			currentVersion = AFE2D86A25F53DBA0026A842 /* FavouritePlayers.xcdatamodel */;
+			path = FavouritePlayers.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = AFE2D7AD25F3A42B0026A842 /* Project object */;
 }
